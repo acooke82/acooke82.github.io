@@ -61,24 +61,23 @@ redirect_from:
   • Edited and organized pre-existing pedagogical material for the grammar textbook.  
 
 ---
-## Skills
-**Languages:** Python, Bash, SQL (PostgreSQL, MySQL)
-**Libraries:** Pandas, NumPy, Scikit-learn, BeautifulSoup, LangChain
+## Skills  
+
+**Languages:** Python, Bash, SQL (PostgreSQL, MySQL)  
+
+**Libraries:** Pandas, NumPy, Scikit-learn, BeautifulSoup, LangChain  
+
 **Software:** Git, Docker, Excel, Jupyter Notebook, VS Code, LangSmith 
 
 ---
 ## Projects
 
-### **English-Hindi Dictionary**
-*https://github.com/acooke82/english-hindi-dictionary/tree/main*
-  • Developed a dictionary app that stores English, Romanised Hindi, and Devanagari script versions of words and
-    their characteristics such as part of speech, gender, and tense in a MySQL database. The app processes an English
-    input through an HTML UI using Flask API or curl command and returns relevant word characteristics.
-  • *Technologies Used:* MySQL, PyCharm, Flask, Docker
+### **English-Hindi Dictionary**  
+*https://github.com/acooke82/english-hindi-dictionary/tree/main*  
+  • Developed a dictionary app that stores English, Romanized Hindi, and Devanagari script versions of words, along with their characteristics such as part of speech, gender, and tense in a MySQL database. The app processes an English input through an HTML UI using Flask API or curl commands and returns relevant word characteristics.  
+  • *Technologies Used:* MySQL, PyCharm, Flask, Docker  
 
-### **Multiclass Classification Model**
-*https://github.com/acooke82/multiclass_classification_model*
-  • Built a predictive model to categorize TV movie reviews into ”Not a Review”, ”Positive Review”, or ”Negative
-    Review” using Scikit-learn’s Logistic Regression, CountVectorizer, and LabelEncoder. Achieved a 90.47% accuracy
-    after adjusting model to handle non-English text and special characters.
+### **Multiclass Classification Model**  
+*https://github.com/acooke82/multiclass_classification_model*  
+  • Built a predictive model to categorize TV movie reviews into “Not a Review,” “Positive Review,” or “Negative Review” using Scikit-learn’s Logistic Regression, CountVectorizer, and LabelEncoder. Achieved a 90.47% accuracy after adjusting the model to handle non-English text and special characters.  
   • *Technologies Used:* Pandas, NumPy, Scikit-learn, Jupyter Notebook
