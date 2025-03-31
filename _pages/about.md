@@ -1,17 +1,17 @@
 ---
 permalink: /
-title: "Alexandra Cooke"
+title: "Introduction"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-### About Me
+### Highlights 
 
 I am currently pursuing a Master's degree in the Human Language Technology (HLT) program at the University of Arizona (UA). In 2021, I earned my B.A. in Linguistics from the University of British Columbia (UBC). My academic and professional background blends linguistics, computer science, and customer service, providing me with a unique perspective on the intersection of technology and language. I enjoy getting to know people and helping them navigate through technical challenges. My passion is creating and identifying accessible solutions for non-technical audiences and underserved communities. I am excited about projects that work on ensuring technology is not only innovative, but approachable and empowering.         
 
-### My Background
+### Background
 
 #### Linguistics 
 I began my academic journey in 2015 at UBC, initially uncertain about my area of focus. In my first semester, I enrolled in a variety of courses, including a first-year linguistics class titled "Challenging Language Myths." The course was both enjoyable and engaging, with weekly discussions aimed at debunking common language myths. Topics ranged from traditional linguistic issues (e.g., "Is there such a thing as 'good' or 'bad' grammar?") to contemporary concerns (e.g., "Are emojis and text-speech ruining language?"). Upon completing the course, I decided to puruse a Linguistics major. In my fourth year, I joined a mixed graduate/undergraduate year-long field methods course in which we were paired with an elder from the Secwepemc community. The course aimed to have students research and document linguistic patterns or phenomena for  Secwepemctsin, the langauge of the Secwepemc community. I spent the first part of the year working on past and perfect tense markers with a colleague and then spent the second part of the year working on deictic markers and demonstatives. As part of this research, I gave a presentation on my findings to the Salish Working Group at UBC and to a class of Secwepemc learners, researchers, and elders at Simon Fraser University (SFU). I spent an additional six months after my degree concluded continuing to do Secwepemctsin langauge work by annotating and organizing data, and authoring pedagogical resources such as storyboards and grammar exercises under a Jacobs Research Fund (JRF) group grant.   
