@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-### Highlights 
+### About 
 
 I am currently pursuing a Master's degree in the Human Language Technology (HLT) program at the University of Arizona (UA). In 2021, I earned my B.A. in Linguistics from the University of British Columbia (UBC). My academic and professional background blends linguistics, computer science, and customer service, providing me with a unique perspective on the intersection of technology and language. I enjoy getting to know people and helping them navigate through technical challenges. My passion is creating and identifying accessible solutions for non-technical audiences and underserved communities. I am excited about projects that work on ensuring technology is not only innovative, but approachable and empowering.         
 
