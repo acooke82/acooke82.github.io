@@ -1,6 +1,6 @@
 ---
-title: "Your HLT Internship (with a much more explanatory title)"
-excerpt: "Short description of the goals and content of your internship<br/><img src='/images/500x300.png'>"
+title: "Optimizing Agentic Applications"
+excerpt: "Building and understanding agentic workflows. ![Internship Post Image](/images/internship-post-image-1.png)"
 collection: portfolio
 ---
 
