@@ -3,7 +3,7 @@ title: "Optimizing Agentic Applications"
 excerpt: "Building, understanding, and testing agentic workflows. ![Internship Post Image](/images/internship-post-image-1.png)"
 collection: portfolio
 ---
-_Tools & Technologies: LangChain, LangSmith, pytest, openai
+_Tools & Technologies: LangChain, LangSmith, pytest, openai_
 
 ### Summary
 
