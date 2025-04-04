@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Alexandra Cooke"
   avatar           : "headshot.jpg"
-  bio              : "I am an engineer with a background in linguistics, computer science, and customer service. I work closely with customers to identify their needs and provide tailored technical solutions, ensuring smooth workflows and effective use of our products."
+  bio              : "linguist, engineer, people person."
   location         : "Vancouver, BC"
   #employer         :
   #pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
@@ -102,7 +102,7 @@ author:
   #instagram        :
   #impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   #lastfm           :
-  #linkedin         :
+  linkedin         : "https://www.linkedin.com/in/acooke82/"
   #orcid            : "http://orcid.org/yourorcidurl"
   #pinterest        :
   #soundcloud       :
