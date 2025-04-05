@@ -1,5 +1,5 @@
 ---
-title: "GenAI Agents Analysis"
+title: "GenAI Agent Analysis"
 excerpt: "Building and testing agentic workflows for optimal performance. ![Internship Post Image](/images/internship-post-image-1.png)"
 collection: portfolio
 ---
