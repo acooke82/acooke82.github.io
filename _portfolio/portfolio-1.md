@@ -7,13 +7,15 @@ _Tools & Technologies: LangChain, LangSmith, pytest, openai_
 
 ### Summary
 
-The main goal of my internship at KSG was to understand, build, and test different GenAI agent workflows to determine which architecture would be best to use in our upcoming product. 
+The main goal of my internship at KSG was to understand, build, and test different GenAI agent workflows to determine which architecture would be best to use in our upcoming product. Once the architecture was determined, my team and I would be assigned tasks to complete developing and deploying the rest of the product. As the project progressed, my core task, amongst assisting with other areas in the project, was building a database cache. 
 
-Once the , my team and I were put into a Sprint and assigned tasks to complete for the agent to be developed and deployed. My core task, amongst assisting with other areas in the project, was building a database cache.  
+In additional to the work for the company, my personal goal was to become more comfortable coding in a professional environment. I also wanted to build a stronger foundation for my understanding and practical experience with large language models.   
 
 ### In-depth Project Overview 
 
 ### 1. Understanding Agents and Agentic Workflows 
+
+
 ##### Supervisor Agent
 ##### Single Agent 
 
