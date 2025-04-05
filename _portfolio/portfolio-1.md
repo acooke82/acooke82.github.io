@@ -13,17 +13,17 @@ Once the , my team and I were put into a Sprint and assigned tasks to complete f
 
 ### In-depth Project Overview 
 
-#### 1. Understanding Agents and Agentic Workflows 
+### 1. Understanding Agents and Agentic Workflows 
 ##### Supervisor Agent
 ##### Single Agent 
 
-#### 2. Prompt Engineering
+### 2. Prompt Engineering
 ##### LangSmith
 
 ### 3. Database Cache
 Once we had defined the type of agent workflow we would be using for the product, my sprint tasks revolved around creating a database cache. The cache needed to handle three use cases: (1) save specific aspects of the agent recipe per agentID, (2) be able to identify and extract the cached information if the given agentID had already been saved, and (3) be able to identify changes to the recipe on the frontend and update the values on the database automatically.
 
-#### Cache
+#### Building the Cache
 There were a few ways to approach the caching problem. Handling the recipe caching itself, and fetching the information, was relatively straightforward. However, updating the database values automatically proved to be more challenging. A simple fix regarding the updates could be to set the time to live of the cache (TTL) as very short, forcing it to regularly be regenerated. However, setting a short TTL would increase server load and effectively remove the need for a cache. My first written attempt was to give pull_recipe a boolean parameter that would be "True" if the agent was out of date or "False" otherwise. If given "True", generate_recipe would be prompted to run to re-generate the agent recipe. However, upon discussion with more senior team members, we determined that it would be more appropriate to push updates to the cache through the crud.py file, as that file already contained methods to get, validate, and update agent resources. Please see below for the main cache functions as well as an example of the cache features integrated with the crud.py file. Please note for the below code, "..." indicates an area where another team member has written code. I have isolated these snippets to just my work.
 
 ```python
