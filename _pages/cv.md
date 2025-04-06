@@ -55,7 +55,7 @@ redirect_from:
 
 ### **Research Assistant |** *University of British Columbia*  
 *November 2020 - May 2021*  
-  • Worked with a team of professors and colleagues to annotate and organize over 200 hours of Secwepemcts´ín data.  
+  • Worked with a team of professors and colleagues to annotate and organize over 200 hours of Secwepemctsín data.  
   • Authored pedagogical resources such as storyboards and grammar exercises for a teaching grammar textbook.  
   • Compiled over 100 pages of data into a complementary answer key for the grammar textbook.  
   • Edited and organized pre-existing pedagogical material for the grammar textbook.  
@@ -65,7 +65,7 @@ redirect_from:
 
 **Languages:** Python, Bash, SQL (PostgreSQL, MySQL)  
 
-**Libraries:** Pandas, NumPy, Scikit-learn, BeautifulSoup, LangChain  
+**Libraries:** Pandas, NumPy, Scikit-learn, BeautifulSoup, LangChain, LangGraph, Pytest  
 
 **Software:** Git, Docker, Excel, Jupyter Notebook, VS Code, LangSmith 
 
