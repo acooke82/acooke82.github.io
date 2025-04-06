@@ -29,7 +29,7 @@ redirect_from:
   • Contributed to discussions on enhancing the scalability and efficiency of agent applications.  
   • Built prompts to optimize agent response times and accuracy.  
   • Tested, optimized, and documented the performance of GenAI-driven solutions.  
-  • Worked with cloud platforms and tools (AWS, Azure) to deploy applications into production environments.  
+  • Worked with cloud platforms (AWS, Azure) to deploy applications into production environments.  
 
 ### **Systems Analyst |** *Global Relay*  
 *October 2022 - Present*  
