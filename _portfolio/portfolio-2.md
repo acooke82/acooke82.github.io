@@ -1,14 +1,17 @@
 ---
-title: "English-Hindi Dictionary"
-excerpt: "A dictionary which stores English, Romanised Hindi, and Devanagari script versions of words along with characteristics of the requested words. ![Internship Post Image](/images/internship-post-image-2.png)"
+title: "Multi-Class Classifier"
+excerpt: "A classifier that utilizes logistic regression to categorize TV/movie reviews into 3 categories. ![Internship Post Image](/images/classifier_image.png)"
 collection: portfolio
 ---
-_Tools & Technologies: MySQL, PyCharm, Flask, Docker_
+_Tools & Technologies: Pandas, NumPy, scikit-learn_
 
 ### Summary
-Developed a dictionary app that stores English, Romanized Hindi, and Devanagari script versions of words, along with their characteristics such as part of speech, gender, and tense in a MySQL database. The app processes an English input through an HTML UI using Flask API or curl commands and returns relevant word characteristics.
 
-### In-depth Project Overview 
+### 1. Training the Model
+
+### 2. Adding Test Data
+
+### 3. Predictions & Outputs 
 
 
 
