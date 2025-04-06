@@ -3,24 +3,148 @@ title: "GenAI Agent Analysis"
 excerpt: "Building and testing agentic workflows for optimal performance. ![Internship Post Image](/images/internship-post-image-1.png)"
 collection: portfolio
 ---
-_Tools & Technologies: LangChain, LangSmith, pytest, openai_
+_Tools & Technologies: LangChain, LangSmith, LangGraph, pytest, openai_
 
 ### Summary
 
-The main goal of my internship at KSG was to understand, build, and test different GenAI agent workflows to determine which architecture would be best to use in our upcoming product. Once the architecture was determined, my team and I would be assigned tasks to complete developing and deploying the rest of the product. As the project progressed, my core task, amongst assisting with other areas in the project, was building a database cache. 
-
-In additional to the work for the company, my personal goal was to become more comfortable coding in a professional environment. I also wanted to build a stronger foundation for my understanding and practical experience with large language models.   
-
-### In-depth Project Overview 
+The main goal of my internship at KSG was to understand, build, and test different GenAI agent workflows to determine which architecture would be best to use in our upcoming product. Once the architecture was determined, my team and I would be assigned tasks to complete developing and deploying the rest of the product. As the project progressed my core tasks, amongst assisting with other areas in the project, were building a database cache and creating prompts that would effectively make use of our new tools and architecture. In addition to completing work for the company, my personal goal was to become more comfortable coding in a professional environment. I also wanted to build a stronger foundation for my understanding and practical experience with large language models.   
 
 ### 1. Understanding Agents and Agentic Workflows 
 
+An *agent* is a system that uses a large language model (LLM) to perform tasks on behalf of a user or within a larger system. They have access to tools and data, whether through internal or external means, that help them make decisions. Testing different types of workflows is important because each system comes with its own pros and cons and you want to ensure you are building the best system for your product as it may be impossible or difficult to alter later. To build our agent workflows, we used *LangGraph*. LangGraph is a library within LangChain that enables developers to build agent applications quickly as it has built-in graph structure, state management, and coordination support. LangGraph works by using *nodes*, which are functions that perform specific tasks such as calling tools, *edges*, which control the flow of information between nodes, and *states*, which are objects in the graph such as conversation history or internal variables. Each workflow makes use of the concepts differently. 
 
-##### Supervisor Agent
-##### Single Agent 
+##### Multi-Agent Workflow
+
+The first workflow that we tested involved a *supervisor agent*. A supervisor agent is part of a multi-agent workflow in which one agent, the "supervisor", serves as the controller of the other agents and handles communication with the user. The supervisor agent itself does not have any tools and must make the decision on which agents under it to call in order to properly complete the task. Each agent under the supervisor has their own prompt, purpose, and tools, and cannot interact directly with the user. In this workflow, agents are typically their own graph node. They are routed a task, after which they can decide to end the execution or send their response to another agent. Please see below for insight into the multi-agent workflow we were testing:
+
+```python
+
+def build_async_workflow(csv_file_path: str ="all-states-history.csv", 
+                         api_file_path: str ="openapi_kraken.json"):
+    """
+    Creates the LLM, specialized agents, and the async StateGraph
+    that orchestrates them with a supervisor node. Returns the
+    not-yet-compiled workflow. You can then compile it with a checkpointer.
+    """
+    logger.debug("build_async_workflow: Starting building workflow")
+
+    # ------------------------------------
+    # A) Create LLM
+    # ------------------------------------
+    model_name = os.environ.get("GPT4o_DEPLOYMENT_NAME", "")
+    logger.debug("Creating LLM with deployment_name=%s", model_name)
+
+    llm = AzureChatOpenAI(
+        deployment_name=model_name,
+        temperature=0,
+        max_tokens=2000,
+        streaming=True,  # set True if you want partial streaming from the LLM
+    )
+
+    # ------------------------------------
+    # B) Create specialized agents
+    # ------------------------------------
+    logger.debug("Creating docsearch_agent, csvsearch_agent, sqlsearch_agent, websearch_agent, apisearch_agent")
+
+    docsearch_agent = create_docsearch_agent(
+        llm=llm,
+        indexes=["srch-index-files", "srch-index-csv", "srch-index-books"],
+        k=20,
+        reranker_th=1.5,
+        prompt=CUSTOM_CHATBOT_PREFIX + DOCSEARCH_PROMPT_TEXT,
+        sas_token=os.environ.get("BLOB_SAS_TOKEN", "")
+    )
+
+    csvsearch_agent = create_csvsearch_agent(
+        llm=llm,
+        prompt=CUSTOM_CHATBOT_PREFIX + CSV_AGENT_PROMPT_TEXT.format(
+            file_url=str(csv_file_path)
+        )
+    )
+
+    sqlsearch_agent = create_sqlsearch_agent(
+        llm=llm,
+        prompt=CUSTOM_CHATBOT_PREFIX + MSSQL_AGENT_PROMPT_TEXT
+    )
+
+    websearch_agent = create_websearch_agent(
+        llm=llm,
+        prompt=CUSTOM_CHATBOT_PREFIX + BING_PROMPT_TEXT
+    )
+
+    logger.debug("Reading API openapi_kraken.json from %s", api_file_path)
+    with open(api_file_path, "r") as file:
+        spec = json.load(file)
+    reduced_api_spec = reduce_openapi_spec(spec)
+
+    apisearch_agent = create_apisearch_agent(
+        llm=llm,
+        prompt=CUSTOM_CHATBOT_PREFIX + APISEARCH_PROMPT_TEXT.format(
+            api_spec=reduced_api_spec
+        )
+    )
+    # ------------------------------------
+    # C) Build the async LangGraph
+    # ------------------------------------
+    logger.debug("Building the StateGraph for multi-agent workflow")
+    workflow = StateGraph(AgentState)
+
+    sup_node = functools.partial(supervisor_node_async, llm=llm)
+    workflow.add_node("supervisor", sup_node)
+
+    doc_node = functools.partial(agent_node_async, agent=docsearch_agent, name="DocSearchAgent")
+    csv_node = functools.partial(agent_node_async, agent=csvsearch_agent, name="CSVSearchAgent")
+    sql_node = functools.partial(agent_node_async, agent=sqlsearch_agent, name="SQLSearchAgent")
+    web_node = functools.partial(agent_node_async, agent=websearch_agent, name="WebSearchAgent")
+    api_node = functools.partial(agent_node_async, agent=apisearch_agent, name="APISearchAgent")
+
+    workflow.add_node("DocSearchAgent", doc_node)
+    workflow.add_node("CSVSearchAgent", csv_node)
+    workflow.add_node("SQLSearchAgent", sql_node)
+    workflow.add_node("WebSearchAgent", web_node)
+    workflow.add_node("APISearchAgent", api_node)
+
+    for agent_name in ["DocSearchAgent", "CSVSearchAgent", "SQLSearchAgent", "WebSearchAgent", "APISearchAgent"]:
+        workflow.add_edge(agent_name, "supervisor")
+
+    conditional_map = {
+        "DocSearchAgent": "DocSearchAgent",
+        "SQLSearchAgent": "SQLSearchAgent",
+        "CSVSearchAgent": "CSVSearchAgent",
+        "WebSearchAgent": "WebSearchAgent",
+        "APISearchAgent": "APISearchAgent",
+        "FINISH": END
+    }
+    workflow.add_conditional_edges("supervisor", lambda x: x["next"], conditional_map)
+    workflow.add_edge(START, "supervisor")
+
+    logger.debug("build_async_workflow: Workflow build complete")
+    return workflow
+```
+
+A multi-agent workflow has the advantages of having seperate agents for each task, making it easy to add and maintain agents without disrupting the original workflow. It also allows you to have more specialization, as each agent can become an expert of a specific tasks or domain. This leads to a personalized system design and good system performance. On the other hand, a multi-agent workflow is expensive to maintain, complex to design, and requires careful agent coordination. This led us to explore different options. 
+
+##### Single Agent Workflow 
+
+The second workflow that we tested was a *single agent* one. In a single agent workflow, one agent has all the tools and must determine which one to use or which order to use the tools in on itself. This differs from the supervisor 
+
+```python
+```
 
 ### 2. Prompt Engineering
+
+Prompt engineering is how we can ensure that we are effectively using our agents to produce the most accurate and relevant outputs.
+
+I have not done any prompt engineering work before, but I enjoyed it because you can see how your changes impact the output immediately and there are many tools or platforms to help you do so. In regards to our product, it was also fun to build prompts for specific customers because they all have specific ideas for tone and objectives. This means that each prompt is unique and you can get pretty creative. It's always a bit fun to see what the agent produces, as sometimes the results are *not* what you were expecting. 
+
 ##### LangSmith
+
+The quickest way to test your prompts before making them live is to host them on a platform intended for testing, managing, and evaluating LLMs. Since we were already using LangChain, we 
+
+You can integrate your LangSmith prompts into your agents rather seamlessly. Below is how  I was integrating them:
+```python
+
+```
 
 ### 3. Database Cache
 Once we had defined the type of agent workflow we would be using for the product, my sprint tasks revolved around creating a database cache. The cache needed to handle three use cases: (1) save specific aspects of the agent recipe per agentID, (2) be able to identify and extract the cached information if the given agentID had already been saved, and (3) be able to identify changes to the recipe on the frontend and update the values on the database automatically.
@@ -87,11 +211,12 @@ await db.flush()
 #### Tests & Debugging
 Before my code could be deployed and merged to the main dev branch, it needed to be locally tested. I made use of *pytest*, specifically the *MonkeyPatch* fixture, to test my code. I needed to use MonkeyPatch because I did not want to call, or impact, the actual Redis cache. To use MonkeyPatch, I built a "MockCache" class that contained dummy variables to mirror the actual the cache values. I created three different test files, outlined below. 
 
- ##### test_recipe_builder.py
- The goal of my first testing file was to confirm that the recipe_builder function was working as expected and so that I could confirm the output of recipe_builder. I needed to verify this in order to accurately 
- build the generate_recipe and pull_recipe functions that would be using that output.
+##### test_recipe_builder.py
+The goal of my first testing file was to confirm that the recipe_builder function was working as expected and so that I could 
+confirm the output of recipe_builder. I needed to verify this in order to accurately 
+build the generate_recipe and pull_recipe functions that would be using that output.
 
- ```python
+```python
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
