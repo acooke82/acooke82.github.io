@@ -3,7 +3,7 @@ title: "GenAI Agent Analysis"
 excerpt: "Building and testing agentic workflows for optimal performance. ![Internship Post Image](/images/internship-post-image-1.png)"
 collection: portfolio
 ---
-_Tools & Technologies: LangChain, LangSmith, LangGraph, pytest, openai_
+_Tools & Technologies: LangChain, LangGraph, LangSmith, pytest, openai_
 
 ### Summary
 
@@ -11,11 +11,13 @@ The main goal of my internship at KSG was to understand, build, and test differe
 
 ### 1. Understanding Agents and Agentic Workflows 
 
-An *agent* is a system that uses a large language model (LLM) to perform tasks on behalf of a user or within a larger system. They have access to tools and data, whether through internal or external means, that help them make decisions. Testing different types of workflows is important because each system comes with its own pros and cons and you want to ensure you are building the best system for your product as it may be impossible or difficult to alter later. To build our agent workflows, we used *LangGraph*. LangGraph is a library within LangChain that enables developers to build agent applications quickly as it has built-in graph structure, state management, and coordination support. LangGraph works by using *nodes*, which are functions that perform specific tasks such as calling tools, *edges*, which control the flow of information between nodes, and *states*, which are objects in the graph such as conversation history or internal variables. Each workflow makes use of the concepts differently. 
+An *agent* is a system that uses a large language model (LLM) to perform tasks on behalf of a user or within a larger system. They have access to tools and data that help them make decisions. Testing different types of workflows is important because each system comes with its own pros and cons and you want to ensure you are building the best system for your product as it may be impossible or difficult to alter later. To build our agent workflows, we used the libraries *LangGraph* and *LangChain*. LangGraph enables developers to build complex agent applications quickly as it has built-in graph structure, state management, and coordination support. LangGraph works by using *nodes*, which are functions that perform specific tasks such as calling tools, *edges*, which control the flow of information between nodes, and *states*, which are objects in the graph such as conversation history or internal variables. LangChain, on the other hand, focuses on simpler linear builds, where you add each step to the established chain to execute tasks in a specific order. 
+
+Because I did not have any experience with either of these libraries, or with agents, it took me some time to do research and analysis. With LangChain, you need to understand how to build a ReAct agent, agent tools, a prompt, and then plug in an LLM to set up the chain. Ideally, you want to understand LangChain before working in LangGraph, as LangGraph requires the same steps but with multiple agents and prompts, complicating how to build the chain. You will be able to see some of these differences in working with these libraries in the code for each workflow below. My supervisor had built out an example multi-agent workflow in steps using Juypter Notebooks that I could follow along with to understand each piece better, but working with LangGraph first meant that I had a much steeper learning curve. LangChain also has a "LangChain Academy" with courses on LangGraph and plenty of documentation online which were very beneficial in navigating these libraries. 
 
 ##### Multi-Agent Workflow
 
-The first workflow that we tested involved a *supervisor agent*. A supervisor agent is part of a multi-agent workflow in which one agent, the "supervisor", serves as the controller of the other agents and handles communication with the user. The supervisor agent itself does not have any tools and must make the decision on which agents under it to call in order to properly complete the task. Each agent under the supervisor has their own prompt, purpose, and tools, and cannot interact directly with the user. In this workflow, agents are typically their own graph node. They are routed a task, after which they can decide to end the execution or send their response to another agent. Please see below for insight into the multi-agent workflow we were testing:
+The first workflow that we tested involved a *supervisor agent*. A supervisor agent is part of a multi-agent workflow in which one agent, the *supervisor*, serves as the controller of the other agents and handles communication with the user. The supervisor agent itself does not have any tools and must make the decision on which agents under it to call in order to properly complete the task. Each agent under the supervisor has their own prompt, purpose, and tools, and cannot interact directly with the user. In this workflow, agents are typically their own graph node. They are routed a task, after which they can decide to end the execution or send their response to another agent. Please see below for insight into the multi-agent workflow we were testing:
 
 ```python
 
@@ -126,7 +128,7 @@ A multi-agent workflow has the advantages of having seperate agents for each tas
 
 ##### Single Agent Workflow 
 
-The second workflow that we tested was a *single agent* one. In a single agent workflow, one agent has all the tools and must determine which one to use or which order to use the tools in on itself. This differs from the supervisor 
+The second workflow that we tested was a *single agent* one. In a single agent workflow, one agent has all the tools and must determine which one to use or which order to use the tools in on itself. This differs from the supervisor workflow as 
 
 ```python
 ```
@@ -141,9 +143,22 @@ I have not done any prompt engineering work before, but I enjoyed it because you
 
 The quickest way to test your prompts before making them live is to host them on a platform intended for testing, managing, and evaluating LLMs. Since we were already using LangChain, we 
 
-You can integrate your LangSmith prompts into your agents rather seamlessly. Below is how  I was integrating them:
+You can integrate your LangSmith prompts into your agents rather seamlessly by using *LangChain*. When building your :
+
 ```python
 
+PROMPT = hub.pull("acooke/single_agent_prompt_text:becb1153")
+if not PROMPT:
+    raise ValueError("Failed to fetch prompt from hub or prompt was empty.")
+
+TRIMMER = trim_messages(
+    max_tokens=30,
+    strategy="last",
+    token_counter=len,
+    include_system=True
+)
+
+CHAIN = PROMPT | TRIMMER | llm_with_tools
 ```
 
 ### 3. Database Cache
