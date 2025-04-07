@@ -9,7 +9,7 @@ _Tools & Technologies: Pandas, NumPy, scikit-learn_
 
 The goal of this project was to build a model that could classify movie and TV show reviews into three different categories: (0) Not a movie or TV show review, (1) Positive review, or (2) Negative review. I decided to use logistic regression to build my classifier model because it was the algorithm that I had the most experience with, so I felt comfortable with being able to run and manipulate it by using *scikit-learn*. Once I had built my model, I judged its performance by calculating the F1 score. An F1 score is a good indicator of a model's predictive performance as it combines the harmonic means of precision and recall scores, ensuring a balanced score.  
 
-A challenge I faced during my project was ensuring that the data was being preprocessed correctly and that any irrelevant texts were being filtered out of the data (gibberish, different languages, special characters). It would also be a great idea in the future to confirm that the labels of the training data are correct before using them to train our model. An ideal approach to do this task again in the future could be to utilize *TFIDFVectorizer*, which would assist in weighting the frequency of the words as opposed to the binary method of the *LogisticRegression* classifier. This project was part of a course I completed during my MSc program, LING539.
+A challenge I faced during my project was ensuring that the data was being preprocessed correctly and that any irrelevant texts were being filtered out of the data (gibberish, different languages, special characters). It would also be a great idea in the future to confirm that the labels of the training data are correct before using them to train our model. An ideal approach to do this task again in the future could be to utilize *TFIDFVectorizer*, which would assist in weighting the frequency of the words, as opposed to the binary method of the *LogisticRegression* classifier. This project was part of a course I completed during the UA's MSc program, LING539.
 
 ### 1. Exploratory Data Analysis
 
@@ -49,7 +49,7 @@ le = LabelEncoder()
 y = le.fit_transform(data['LABEL'])
 ```
 
-Once the vectors had been created I could train my model with them, adjusting the LogisticRegression parameters as necessary. I bumped up the default value for max_iter, which is 100, to 10,000 and added random_state set to 42. Depending on your solver of choice and data, you need to adjust the max_iter to get your solver to converge and reach the optimal solution. Setting random_state to 42 allows the dataset to be shuffled and is a standard value to use (along with 0). Training the model and updating parameteres is a pretty quick process thanks to scikit-learn:
+Once the vectors had been created I could train my model with them, adjusting the LogisticRegression parameters as necessary. I bumped up the default value for max_iter, which is 100, to 10,000 and added random_state set to 42. Depending on your solver of choice and data, you need to adjust the max_iter to get your solver to converge and reach the optimal solution. Setting random_state to 42 allows the dataset to be shuffled and is a standard value to use (along with 0). Training the model and updating parameters is a pretty quick process thanks to scikit-learn as demonstrated here:
 
 ```python
 #train the model
@@ -90,9 +90,11 @@ csv = pd.DataFrame({"ID":list(data2["ID"]), "LABEL":list(predictions)})
 csv.to_csv(r"C:\Users\Alex\Downloads\final3.csv",index=False)
 ```
 
-### 5. Results
+### 5. Results & Future Improvements 
 
-The final iteration of my model, as outlined above, performed with an F1 score just over 90%. I was pleased to see that all non-English reviews were categorized as "0", which is what I would have expected. To check my precision and recall scores, I used the libraries *recall_score* and *precision_score*. 
+The final iteration of my model, as outlined above, performed with an F1 score just over 90%. I was pleased to see that all non-English reviews were categorized as "0", which is what I would have expected. 
+
+To further improve my model performance, I have outlined three separate changes. One, as briefly touched on in a few sections above, is to remove data from the training set that differs from the target one. This would allow me to create more precise vectors. A second change would be to adjust my LogisticRegression parameters to check if other multinomial solvers, such as newton-cg or sag, would be better choices than the default one, lbfgs. Additionally, I could have built a confusion matrix to conduct more thorough error analysis. A confusion matrix is a table used to evaluate the performance of a model in a visual manner. The table contains rows for actual values and columns for predicted values, labelled as true positives (TP), false positives (FP), false negatives (FN), and true negatives (TN). By totalling up these values, you can determine how many predictions were made total and how many were correct.   
 
 
 
