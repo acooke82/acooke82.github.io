@@ -33,7 +33,7 @@ redirect_from:
 
 ### **Systems Analyst |** *Global Relay*  
 *October 2022 - Present*  
-  • Created and executed 100 SQL queries per month to generate custom reports and validate database information.  
+  • Created and executed 100 SQL queries per month to generate custom reports and validate database information. 
   • Verified system health and job statuses using Hadoop.  
   • Analyzed and processed datasets using Bash, PowerShell, and Excel.  
   • Worked with development teams to investigate and resolve system failures.  
@@ -70,14 +70,12 @@ redirect_from:
 **Software:** Git, Docker, Excel, Jupyter Notebook, VS Code, LangSmith 
 
 ---
-## Projects
+## [Projects](https://acooke82.github.io/portfolio/)
 
-### **English-Hindi Dictionary**  
-*https://github.com/acooke82/english-hindi-dictionary/tree/main*  
+### **[English-Hindi Dictionary](https://github.com/acooke82/english-hindi-dictionary/tree/main)**  
   • Developed a dictionary app that stores English, Romanized Hindi, and Devanagari script versions of words, along with their characteristics such as part of speech, gender, and tense in a MySQL database. The app processes an English input through an HTML UI using Flask API or curl commands and returns relevant word characteristics.  
   • *Technologies Used:* MySQL, PyCharm, Flask, Docker  
 
-### **Multiclass Classification Model**  
-*https://github.com/acooke82/multiclass_classification_model*  
+### **[Multiclass Classification Model](https://github.com/acooke82/multiclass_classification_model)**  
   • Built a predictive model to categorize TV movie reviews into “Not a Review,” “Positive Review,” or “Negative Review” using Scikit-learn’s Logistic Regression, CountVectorizer, and LabelEncoder. Achieved a 90.47% accuracy after adjusting the model to handle non-English text and special characters.  
   • *Technologies Used:* Pandas, NumPy, Scikit-learn, Jupyter Notebook
