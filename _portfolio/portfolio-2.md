@@ -9,7 +9,7 @@ _Tools & Technologies: Pandas, NumPy, scikit-learn_
 
 The goal of this project was to build a model that could classify text passages into three different categories: (0) Not a movie or TV show review, (1) Positive review, or (2) Negative review. I decided to use logistic regression to build my classifier model because it was the algorithm that I had the most experience with, so I felt comfortable with being able to run and manipulate it by using *scikit-learn*. Once I had built my model, I judged its performance by calculating the F1 score. An F1 score is a good indicator of a model's predictive performance as it combines the harmonic means of precision and recall scores, ensuring a balanced score.  
 
-This project was part of a [course](https://catalog.arizona.edu/courses/0199291) on statistical natural language processing I completed during the UA's MSc program. To view the code used for this project, please go [here](https://github.com/acooke82/multiclass_classification_model).
+This project was part of a [course](https://catalog.arizona.edu/courses/0199291) on statistical natural language processing I completed during the UA's MSc HLT program. To view the full project, please go [here](https://github.com/acooke82/multiclass_classification_model).
 
 ### 1. Exploratory Data Analysis
 
