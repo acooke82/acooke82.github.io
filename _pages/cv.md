@@ -23,7 +23,7 @@ redirect_from:
 ---
 ## Experience
 
-### **Data Scientist Intern |** *Kinetic Solutions Group*  
+### **Data Scientist Intern |** *[Kinetic Solutions Group](https://ksgai.com/)*  
 *January 2025 - March 2025*  
   • Assisted in designing and developing agentic applications that leveraged GenAI technologies.  
   • Contributed to discussions on enhancing the scalability and efficiency of agent applications.  
@@ -31,7 +31,7 @@ redirect_from:
   • Tested, optimized, and documented the performance of GenAI-driven solutions.  
   • Worked with cloud platforms (AWS, Azure) to deploy applications into production environments.  
 
-### **Systems Analyst |** *Global Relay*  
+### **Systems Analyst |** *[Global Relay](https://www.globalrelay.com/)*  
 *October 2022 - Present*  
   • Created and executed 100 SQL queries per month to generate custom reports and validate database information. 
   • Verified system health and job statuses using Hadoop.  
@@ -48,7 +48,7 @@ redirect_from:
   • Managed 50 export, import, and migration requests per day for customer data.  
   • Awarded for exceptional efficiency, attention to detail, and communication skills.  
 
-### **Language Data Analyst |** *TransPerfect*  
+### **Language Data Analyst |** *[TransPerfect](https://www.transperfect.com/)*  
 *July 2021 - December 2021*  
   • Annotated over 400 pieces of linguistic data per day, exceeding KPIs for data annotation at 140% productivity.  
   • Read user queries, logged their intended meaning, and analyzed the relevance of search results returned by the AI.  
