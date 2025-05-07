@@ -445,7 +445,7 @@ async def test_pull_recipe_with_generation_successful(
 ```
 As I had never used the MonkeyPatch fixture before, it took me some time to correctly set up my testing environment and to understand how to approach mocking the live cache. However, once those issues were addressed, the creation of the tests themselves were straightforward. Once my assertions were all passing, I sent a pull request for my tests and cache code to be integrated with the project. The database cache was completed at the end of my internship and successfully integrated into the product. 
 
-#### Final Thoughts
+### Final Thoughts
 
 During my internship at KSG, I evaluated and developed various LLM agent workflows using LangChain, LangGraph, and LangSmith to identify the most effective architecture for our product. I implemented both single-agent and multi-agent systems, analyzing their tradeoffs. I also created a database caching system to optimize agent performance, developed tailored prompts for high-accuracy agent responses, and wrote robust tests using Pytest and MonkeyPatch to validate core functionalities. I also contributed to UI design discussions and product strategy, offering feedback on feature prioritization and intuitive ways to guide clients through the platform. These contributions accelerated development and improved product readiness. Our product launched at the end of April, check it out [here](https://vivi.bot/)!
 
