@@ -9,9 +9,7 @@ redirect_from:
 ---
 ### About 
 
-I completed my MS in Human Language Technology at the University of Arizona in 2025, and my BA in Linguistics at UBC in 2021. My background sits at the intersection of linguistics, computer science, and customer success — which means I'm equally comfortable in a CTO architecture review and a training session with a non-technical team.
-
-I currently work in customer success at an early-stage AI startup, where I build and deploy production AI agents, own a self-service documentation portal, and run scaled enablement programs that help enterprise customers move from AI curiosity to production adoption. My focus is on making advanced technology approachable and safe — for the teams using it and the customers they serve.
+I completed my MS in Human Language Technology at the University of Arizona in 2025, and my BA in Linguistics at UBC in 2021. My academic and professional backgrounds blend linguistics, computer science, and customer service, providing me with a unique perspective on the intersection of technology and language. I enjoy getting to know people and helping them navigate through technical challenges. My passion is creating and identifying accessible solutions for non-technical audiences and underserved communities. I am excited about working on projects that ensure technology is not only innovative, but approachable. I currently work in customer success at an early-stage AI startup, where I build and deploy production AI agents, own a self-service documentation portal, and run scaled enablement programs that help enterprise customers move from AI curiosity to production adoption. My focus is on making advanced technology approachable and safe — for the teams using it and the customers they serve.
 
 ### Background
 
